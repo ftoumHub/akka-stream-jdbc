@@ -7,7 +7,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.RunnableGraph;
 import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
-import org.demo.akka.process.Item;
+import org.demo.akka.process.Card;
 import org.demo.akka.process.SinkConsole;
 import org.demo.akka.process.SourceFromDb;
 
@@ -19,9 +19,9 @@ public class StreamJdbcApp {
 
         ActorSystem system = ActorSystem.create("akka-stream-db");
 
-        Source<Item, NotUsed> itemsrc = new SourceFromDb().source();
+        Source<Card, NotUsed> itemsrc = new SourceFromDb().source();
 
-        Sink<Item, CompletionStage<Done>> sink = new SinkConsole().sink();
+        Sink<Card, CompletionStage<Done>> sink = new SinkConsole().sink();
 
         RunnableGraph<NotUsed> runnable = itemsrc.to(sink);
 

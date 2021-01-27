@@ -7,7 +7,7 @@ import java.util.concurrent.CompletionStage;
 
 public class SinkConsole {
 
-    public Sink<Item, CompletionStage<Done>> sink() {
+    public Sink<Card, CompletionStage<Done>> sink() {
         return Sink.foreach(System.out::println);
     }
 }

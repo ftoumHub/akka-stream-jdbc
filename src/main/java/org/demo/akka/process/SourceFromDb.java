@@ -10,9 +10,8 @@ public class SourceFromDb {
 
     private static final SlickSession session = SlickSession.forConfig("demo-db");
 
-    public Source<Item, NotUsed> source() {
-
-        return Slick.source(session, "select id, name, description, price from items",
-                (SlickRow row) -> new Item(row.nextInt(), row.nextString(), row.nextString(), row.nextDouble()));
+    public Source<Card, NotUsed> source() {
+        return Slick.source(session, "select name, artist, text from card_fts.card",
+                (SlickRow row) -> new Card(row.nextString(), row.nextString(), row.nextString()));
     }
 }
